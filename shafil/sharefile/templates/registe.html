@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sharing Center</title>
+</head>
+
+<body>
+
+<div class="container">
+  {% if form.non_field_errors %}
+  <div>
+      <button type="button" >
+          <span aria-hidden="true">&times;</span></button>
+      {{ form.non_field_errors }}
+  </div>
+  {% endif %}
+        <h3><strong>Register</strong></h3>
+
+        <form action="" method="post">{% csrf_token %}
+          <div class="form-group {% if form.username.errors %} has-error {% endif %}">
+            <label for="">{{ form.username.label }}</label>
+            {% if form.username.errors %}
+            <span class="text-danger pull-right">{{ form.username.errors }}</span>
+            {% endif %}
+            {{ form.username }}
+            <p class="text-muted">{{ form.username.help_text }}</p>
+          </div>
+          <div class="form-group {% if form.email.errors %} has-error {% endif %}">
+            <label for="">{{ form.email.label }}</label>
+            {% if form.email.errors %}
+<           <span class="text-danger pull-right">{{ form.email.errors }}</span>
+            {% endif %}
+            {{ form.email }}
+            <p class="text-muted">{{ form.email.help_text }}</p>
+          </div>
+          <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+            <label for="">{{ form.password.label }}</label>
+            {% if form.password.errors %}
+            <span class="text-danger pull-right">{{ form.password.errors }}</span>
+            {% endif %}
+            {{ form.password }}
+            <p class="text-muted">{{ form.password.help_text }}</p>
+          </div>
+          <div class="form-group {% if form.confirm_password.errors %} has-error {% endif %}">
+            <label for="">{{ form.confirm_password.label }}</label>
+            {% if form.confirm_password.errors %}
+            <span class="text-danger pull-right">{{ form.confirm_password.errors }}</span>
+            {% endif %}
+            {{ form.confirm_password }}
+          </div>
+          <button type="submit" class="btn btn-default">注 册</button>
+        </form>
+   </div>
+
+</body>
+</html>
