@@ -3,7 +3,6 @@ import re
 import base64
 from django import forms
 from django.contrib import auth
-#from .forms improt UploadFileForm
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.views.generic.edit import FormView
@@ -14,13 +13,15 @@ from django.contrib.auth.forms import UserCreationForm
 from itsdangerous import URLSafeTimedSerializer as utsr
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,render_to_response,redirect
-from django.views.decorators.csrf import requires_csrf_token,csrf_protect
+from django.views.decorators.csrf import requires_csrf_token,csrf_protect,csrf_exempt
 from django.http import HttpResponse,JsonResponse,Http404,HttpResponseRedirect
 
+#self function
 from registe_form import RegisterForm
 from login_form  import LoginForm
-
+from file_check import create_name
 # Create your views here.
+#生成Token
 class Token():
 	def __init__(self,security_key):
 		self.security_key = security_key
@@ -32,7 +33,7 @@ class Token():
 		serializer = utsr(self.security_key)
 		return serializer.loads(token,salt=self.salt,max_age=expiration)
 
-token_confirm = Token('q1_^p*=c6s*9c&whfr@54#%aiuoo$_j44a87w99$2@^)uk3*!@')
+token_confirm = Token('wiafsbalca-d=')
 
 class RegisterView(FormView):
     template_name = 'registe.html'
@@ -138,7 +139,6 @@ def upload_file(request):
 	if request.method == 'POST':
 		un = request.POST.get('username')
 		f = request.FILES.get('uploadfile')
-
 		filename = '/'.join(['upload', f.name])
 		#with open(filename, 'a+') keys:
 		#for chunk in f.chunks():
