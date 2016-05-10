@@ -1,0 +1,8 @@
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+	<label>用户名：</label><input type="text" name="username" />
+	<label>文  件：</label><input type="file" name="uploadfile" />
+	<input type="submit" value="提交" />
+</form>
+<br>
+<h>File:{{ filename }}</h>

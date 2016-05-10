@@ -1,0 +1,24 @@
+<html lang="en">  
+<head>  
+    <meta charset="utf-8">  
+    <title>Sharing Center</title>
+</head>
+  
+<body>  
+  {{ notice }}
+    <div>
+        <h1>Sharing Center</h1>
+        <p>Welcome back</p>
+        <form  action="" method="post">
+            {% csrf_token %}  
+            {{ form }}
+        <p>
+                <input type="submit" value="登录" >
+                <a href="/password_reset"><input  value="忘记密码" ></a>
+                <a href="/registe"><input  value="新用户"></a>
+        </p>
+        </form>
+    </div>
+
+</body>
+</html>
